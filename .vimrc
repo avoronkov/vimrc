@@ -100,6 +100,7 @@ let g:go_def_mapping_enabled = 0
 autocmd FileType python :set expandtab
 autocmd FileType javascript :set expandtab
 autocmd FileType typescript :set expandtab
+autocmd FileType json :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 imap <C-L> <Esc>
 

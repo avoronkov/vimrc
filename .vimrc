@@ -54,6 +54,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go'
 Plug 'avoronkov/vim-close'
 Plug 'vim-scripts/vcscommand.vim'
+Plug 'avoronkov/vim-waver'
 
 call plug#end()
 
@@ -101,6 +102,7 @@ autocmd FileType python :set expandtab
 autocmd FileType javascript :set expandtab
 autocmd FileType typescript :set expandtab
 autocmd FileType json :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 imap <C-L> <Esc>
 

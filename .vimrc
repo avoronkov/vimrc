@@ -53,8 +53,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go'
 Plug 'avoronkov/vim-close'
-Plug 'vim-scripts/vcscommand.vim'
 Plug 'avoronkov/vim-waver'
+Plug 'vim-scripts/vcscommand.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+Plug 'junegunn/fzf.vim'
+Plug 'mustache/vim-mustache-handlebars'
+
+Plug 'zah/nim.vim'
+Plug 'ziglang/zig.vim'
 
 call plug#end()
 
@@ -88,11 +95,15 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac :CocAction<CR>
+nmap <leader>ac <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf :CocFix<CR>
+nmap <leader>qf <Plug>(coc-fix-current)
 
-let g:coc_global_extensions = [ 'coc-tsserver' ]
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-eslint' ]
 
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
@@ -101,9 +112,15 @@ let g:go_def_mapping_enabled = 0
 autocmd FileType python :set expandtab
 autocmd FileType javascript :set expandtab
 autocmd FileType typescript :set expandtab
+autocmd FileType typescriptreact :set expandtab
 autocmd FileType json :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html.handlebars :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType pelia :set expandtab
 
 imap <C-L> <Esc>
 
 command! Blame VCSBlame
+
+" let g:prettier#autoformat_config_present = 1
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
